@@ -7,11 +7,9 @@ hcf
 
 :__inthandler_handleinterrupt
 
-lda {__inthandler_printdone0}
-ota {fend}
 lda {__inthandler_notimplementedmsg}
-jmp {kprint}
-:__inthandler_printdone0
+call {kprint} {fend}
+
 hcf
 
 :__inthandler_notimplementedmsg
@@ -29,15 +27,10 @@ dw 0
 ;; kernel starting from zero
 :__inthandler_nointerrupt
 
-lda {__inthandler_printdone1}
-ota {fend}
 lda {__inthandler_handleinterrupt_msg1}
-jmp {kprint}
-:__inthandler_printdone1
+call {kprint} {fend}
 
 hcf
-
-
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -64,12 +57,7 @@ add {kprint_ptr}
 jmp {kprint_loop}
 :kprint_loopend
 
-elda 0x010000
-ldbi {fend}
-or {kprint_fend}
-:kprint_fend
-dw 0
-
+ijmp {fend}
 
 ;;;;;;;;;;;;;;;;;
 :__kern_scratch
