@@ -23,7 +23,7 @@ dw 0
 ds Starting MUON-III kernel...
 dw 0x0a
 dw 0
-
+ 
 ;; kernel starting from zero
 :__inthandler_nointerrupt
 
