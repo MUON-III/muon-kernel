@@ -21,8 +21,19 @@ dw 0
 :fend
 dw 0
 
+:__inthandler_handleinterrupt_msg1
+ds Starting MUON-III kernel...
+dw 0x0a
+dw 0
+
 ;; kernel starting from zero
 :__inthandler_nointerrupt
+
+lda {__inthandler_printdone1}
+ota {fend}
+lda {__inthandler_handleinterrupt_msg1}
+jmp {kprint}
+:__inthandler_printdone1
 
 hcf
 
@@ -53,7 +64,7 @@ add {kprint_ptr}
 jmp {kprint_loop}
 :kprint_loopend
 
-elda 0x100000
+elda 0x010000
 ldbi {fend}
 or {kprint_fend}
 :kprint_fend
