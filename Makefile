@@ -7,4 +7,4 @@ all:
 
 dlcasm:
 	curl -Ls "https://jenkins.i-am.cool/job/muon-casm/job/master/lastSuccessfulBuild/artifact/casm-staticlatest" -o $(CASM)
-	chmod +x $(CASM)
+	-chmod +x $(CASM)
