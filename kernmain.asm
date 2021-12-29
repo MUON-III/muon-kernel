@@ -35,9 +35,6 @@ dw 0
 lda {__inthandler_handleinterrupt_msg2}
 call {kprint} {fend}
 
-lda 0x20300a
-ota 0xf00000
-
 lda {__inthandler_handleinterrupt_msg1}
 call {kprint} {fend}
 
