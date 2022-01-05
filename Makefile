@@ -3,7 +3,13 @@ UCODE = ./ucode.bin
 
 all:
 	make dlcasm
+	make build
+	make test
+
+build:
 	$(CASM) -i kernmain.asm -o kernmain.o
+	
+test:
 	$(CASM) -i kernmain.o --ucrom $(UCODE) --emulate --emuprint
 
 dlcasm:
