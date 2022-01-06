@@ -61,8 +61,10 @@ ijmp {softstack_scratch2}
 ;; void softstack__ret()       ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 :softstack__ret
+otb {softstack_scratch2}
 call {softstack__pop} {softstack_fend}
 ota {softstack_data}
+lda {softstack_scratch2}
 ijmp {softstack_data}
 
 :softstack_min
