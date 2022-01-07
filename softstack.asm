@@ -67,6 +67,17 @@ ota {softstack_data}
 ldai {softstack_scratch2}
 ijmp {softstack_data}
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; void softstack__ret1arg()   ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+:softstack__ret1arg
+otb {softstack_scratch2}
+call {softstack__pop} {softstack_fend}
+ota {softstack_data}
+call {softstack__pop} {softstack_fend}
+ldai {softstack_scratch2}
+ijmp {softstack_data}
+
 :softstack_min
 dw 0x10000
 :softstack_ptr
@@ -86,20 +97,24 @@ dw 0
 dw 0
 :softstack_scratch2
 dw 0
+:softstack_scratch3
+dw 0
 
 :__ss_err_crit_code
 dw 0
 
+hcf
+
 :__ss_err_crit
-lda 0x53
+lda 0x73
 ota 0xF00000
 ota 0xF00000
 lda 0x45
 ota 0xF00000
 ldai {__ss_err_crit_code}
 ldb 0x30
-add {softstack_scratch2}
-ldai {softstack_scratch2}
+add {__ss_err_crit_code}
+ldai {__ss_err_crit_code}
 ota 0xF00000
 lda 0x0A
 ota 0xF00000
