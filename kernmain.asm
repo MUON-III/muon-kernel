@@ -88,7 +88,7 @@ ota {__string_to_num_loop}
 ldb {string_to_num_output}
 jmp {softstack__ret}
 
-:__string_to_num
+:__atoi
 ldai {__string_to_num_loop}
 ldb 0x5
 CMP {garbage_scratch}
@@ -115,7 +115,7 @@ ldb 0x1
 ADD {__string_to_num_loop}
 ldai {__string_to_num_start_pointer}
 ADD {__string_to_num_start_pointer}
-jmp {__string_to_num}
+jmp {__atoi}
 
 :__hex_lookup
 dw 0x0
@@ -170,7 +170,7 @@ dw 0
 dw 0
 
 :__num_to_string_loop_escape
-ijmp {fend}
+jmp {fend}
 
 :num_to_string_output_pointer
 dw {__num_to_string_output}
@@ -255,12 +255,10 @@ jmp {__string_compare}
 
 :string_compare_end_true
 ldb 0x1
-lda 0x1 
-ota {string_output_bool}
+otb 0x1000
 jmp {softstack__ret}
 
-:string_output_bool
-dw 0 
+
 
 :__string_compare_secondary_pointer
 dw 0
@@ -334,7 +332,7 @@ ijmp {softstack_scratch2}
 otb {softstack_scratch2}
 call {softstack__pop} {softstack_fend}
 ota {softstack_data}
-lda {softstack_scratch2}
+ldai {softstack_scratch2}
 ijmp {softstack_data}
 
 :softstack_min
@@ -426,7 +424,6 @@ lda {__peek}
 ota {__string_compare_secondary_pointer}
 lda {__string_compare}
 scall {softstack__call}
-ldai {string_output_bool}
 ldb 0x1
 ota 0x1000
 cmp {garbage_scratch}
@@ -440,9 +437,6 @@ jmp {__wait_loop}
 :__peek_exec
 lda 0x35
 ota 0xf00000
-ldaptr {__cmd_string_space_pointer_pointer}
-ota 0xf00000
-jmp {__peek_exec}
 jmp {__wait_loop}
 
 
