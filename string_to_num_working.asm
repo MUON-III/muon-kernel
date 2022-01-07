@@ -56,20 +56,11 @@ dw 0xd
 dw 0xe
 dw 0xf
 
-:test_string
-dw 0x31
-dw 0x30
-dw 0x30
-dw 0x31
-dw 0x30
-dw 0x30
-dw 0x0
-
 :garbage_scratch
 dw 0
 
 :__string_to_num_start_pointer
-dw {test_string}
+dw 0
 
 :__string_to_num_loop
 dw 0 
