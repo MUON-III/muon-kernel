@@ -4,8 +4,7 @@ dw 0
 ldai {__string_to_num_loop}
 ldb 0x5
 CMP {garbage_scratch}
-brch 0b10 {__string_to_num_loop_escape}
-
+brch 0b10 {__string_to_num_loop_escape
 ldaptr {__string_to_num_start_pointer}
 ldb 0x2f
 SUB {garbage_scratch}
@@ -23,14 +22,12 @@ ldai {string_to_num_output}
 SHLA {string_to_num_output}
 ldai {string_to_num_output}
 SHLA {string_to_num_output}
-
 ldai {__string_to_num_loop}
 ldb 0x1
 ADD {__string_to_num_loop}
 ldai {__string_to_num_start_pointer}
 ADD {__string_to_num_start_pointer}
 jmp {__string_to_num}
-
 
 :__hex_lookup
 dw 0x0
@@ -80,7 +77,8 @@ dw 0
 :__string_to_num_loop_escape
 lda 0x0 
 ota {__string_to_num_loop}
-hcf
+ldb {string_to_num_output}
+jmp {softstack__ret}
 
 :string_to_num_output
 dw 0
