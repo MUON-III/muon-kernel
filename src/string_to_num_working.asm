@@ -1,6 +1,13 @@
 dw 0 
 
 :__string_to_num
+ldai {softstack_ptr}
+ldb 1
+sub {garbage_scratch}
+ldai {garbage_scratch}
+ota {__string_to_num_start_pointer}
+
+:__string_to_num_loop_setup
 ldai {__string_to_num_loop}
 ldb 0x5
 CMP {garbage_scratch}
@@ -27,7 +34,7 @@ ldb 0x1
 ADD {__string_to_num_loop}
 ldai {__string_to_num_start_pointer}
 ADD {__string_to_num_start_pointer}
-jmp {__string_to_num}
+jmp {__string_to_num_loop_setup}
 
 :__hex_lookup
 dw 0x0
@@ -69,7 +76,7 @@ dw 0
 lda 0x0 
 ota {__string_to_num_loop}
 ldb {string_to_num_output}
-jmp {softstack__ret}
+jmp {softstack__ret1arg}
 
 :string_to_num_output
 dw 0
