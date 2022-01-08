@@ -78,6 +78,60 @@ call {softstack__pop} {softstack_fend}
 ldai {softstack_scratch2}
 ijmp {softstack_data}
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; void softstack__ret2arg()   ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+:softstack__ret2arg
+otb {softstack_scratch2}
+call {softstack__pop} {softstack_fend}
+ota {softstack_data}
+call {softstack__pop} {softstack_fend}
+call {softstack__pop} {softstack_fend}
+ldai {softstack_scratch2}
+ijmp {softstack_data}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; void softstack__ret3arg()   ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+:softstack__ret3arg
+otb {softstack_scratch2}
+call {softstack__pop} {softstack_fend}
+ota {softstack_data}
+call {softstack__pop} {softstack_fend}
+call {softstack__pop} {softstack_fend}
+call {softstack__pop} {softstack_fend}
+ldai {softstack_scratch2}
+ijmp {softstack_data}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; void softstack__ret4arg()   ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+:softstack__ret4arg
+otb {softstack_scratch2}
+call {softstack__pop} {softstack_fend}
+ota {softstack_data}
+call {softstack__pop} {softstack_fend}
+call {softstack__pop} {softstack_fend}
+call {softstack__pop} {softstack_fend}
+call {softstack__pop} {softstack_fend}
+ldai {softstack_scratch2}
+ijmp {softstack_data}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; void softstack__ret5arg()   ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+:softstack__ret5arg
+otb {softstack_scratch2}
+call {softstack__pop} {softstack_fend}
+ota {softstack_data}
+call {softstack__pop} {softstack_fend}
+call {softstack__pop} {softstack_fend}
+call {softstack__pop} {softstack_fend}
+call {softstack__pop} {softstack_fend}
+call {softstack__pop} {softstack_fend}
+ldai {softstack_scratch2}
+ijmp {softstack_data}
+
 :softstack_min
 dw 0x10000
 :softstack_ptr
