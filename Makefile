@@ -7,10 +7,12 @@ all:
 	make test
 
 build:
-	$(CASM) -i kernmain.asm -o kernmain.o
+	$(CASM) -i src/stdlib.asm -o bin/stdlib.o --gotout lnk/stdlib.got --org 0xC000 --binary
+	$(CASM) -i src/kernmain.asm -o bin/kernmain.o --gotin lnk/stdlib.got --binary
+	util/assemblerom.py bin/kernmain.o:0 bin/stdlib.o:0xC000 rom.bin
 	
 test:
-	$(CASM) -i kernmain.o --ucrom $(UCODE) --emulate --emuprint
+	$(CASM) -i rom.bin --ucrom $(UCODE) --emulate --emuprint
 
 dlcasm:
 	curl -Ls "https://jenkins.i-am.cool/job/muon-casm/job/master/lastSuccessfulBuild/artifact/casm-staticlatest" -o $(CASM)
