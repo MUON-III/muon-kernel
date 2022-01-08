@@ -5,6 +5,7 @@ $include src/softstack.asm
 %GOT:softstack__push
 %GOT:softstack__pop
 %GOT:softstack__ret1arg
+%GOT:softstack_ptr
 %GOT:softstack_fend
 
 ;; itoa
