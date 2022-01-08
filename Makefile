@@ -12,7 +12,7 @@ build:
 	util/assemblerom.py bin/kernmain.o:0 bin/stdlib.o:0xC000 rom.bin
 	
 test:
-	$(CASM) -i rom.bin --ucrom $(UCODE) --emulate --emuprint
+	$(CASM) -i rom.bin --ucrom $(UCODE) --emulate --emuprint --binary
 
 dlcasm:
 	curl -Ls "https://jenkins.i-am.cool/job/muon-casm/job/master/lastSuccessfulBuild/artifact/casm-staticlatest" -o $(CASM)
