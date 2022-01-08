@@ -15,3 +15,7 @@ $include src/softstack.asm
 ;; itoa
 $include src/itoa.asm
 %GOT:itoa
+
+;; string_to_num
+$include src/string_to_num_working.asm
+%GOT:__string_to_num
