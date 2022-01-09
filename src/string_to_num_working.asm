@@ -1,6 +1,6 @@
 dw 0 
 
-:__string_to_num
+:string_to_num
 ldai {softstack_ptr}
 ldb 1
 sub {garbage_scratch}

@@ -18,4 +18,11 @@ $include src/itoa.asm
 
 ;; string_to_num
 $include src/string_to_num_working.asm
-%GOT:__string_to_num
+%GOT:string_to_num
+
+;; kprint
+$include src/kprint.asm
+%GOT:kprint
+
+;; string_compare
+$include src/string_compare.asm
