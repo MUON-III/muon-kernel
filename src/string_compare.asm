@@ -5,13 +5,13 @@
 
 :string_compare
 
-ldai {softstack_ptr}
+ldai {%GOT:softstack_ptr}
 ldb 0x1
 sub {garbage_scratch}
 ldai {garbage_scratch}
 ota {__string_compare_primary_pointer}
 
-ldai {softstack_ptr}
+ldai {%GOT:softstack_ptr}
 ldb 0x0
 sub {garbage_scratch}
 ldai {garbage_scratch}

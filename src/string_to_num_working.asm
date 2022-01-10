@@ -1,7 +1,7 @@
 dw 0 
 
 :string_to_num
-ldai {softstack_ptr}
+ldai {%GOT:softstack_ptr}
 ldb 1
 sub {garbage_scratch}
 ldai {garbage_scratch}
@@ -11,7 +11,7 @@ ota {__string_to_num_start_pointer}
 ldai {__string_to_num_loop}
 ldb 0x5
 CMP {garbage_scratch}
-brch 0b10 {__string_to_num_loop_escape
+brch 0b10 {__string_to_num_loop_escape}
 ldaptr {__string_to_num_start_pointer}
 ldb 0x2f
 SUB {garbage_scratch}

@@ -26,3 +26,4 @@ $include src/kprint.asm
 
 ;; string_compare
 $include src/string_compare.asm
+%GOT:string_compare
