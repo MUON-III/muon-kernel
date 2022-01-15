@@ -52,3 +52,6 @@ dw 0
 
 :__string_compare_secondary_pointer
 dw 0
+
+:garbage_scratch
+dw 0

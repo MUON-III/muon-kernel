@@ -11,6 +11,7 @@ $include src/softstack.asm
 %GOT:softstack__ret5arg
 %GOT:softstack_ptr
 %GOT:softstack_fend
+%GOT:softstack_data
 
 ;; itoa
 $include src/itoa.asm
