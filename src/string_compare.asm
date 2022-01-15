@@ -5,13 +5,13 @@
 
 :string_compare
 
-ldai {%GOT:softstack_ptr}
+ldai {softstack_ptr}
 ldb 0x1
 sub {garbage_scratch}
 ldai {garbage_scratch}
 ota {__string_compare_primary_pointer}
 
-ldai {%GOT:softstack_ptr}
+ldai {softstack_ptr}
 ldb 0x0
 sub {garbage_scratch}
 ldai {garbage_scratch}
@@ -27,7 +27,7 @@ ldaptr {__string_compare_secondary_pointer}
 CMP {garbage_scratch}
 brch 0b10 {__string_compare_true}
 ldb 0x0
-jmp {%GOT:softstack__ret2arg}
+jmp {softstack__ret2arg}
 
 :__string_compare_true
 ldb 0x0
@@ -45,7 +45,7 @@ jmp {string_compare_loop}
 
 :string_compare_end_true
 ldb 0x1
-jmp {%GOT:softstack__ret2arg}
+jmp {softstack__ret2arg}
 
 :__string_compare_primary_pointer
 dw 0 

@@ -1,7 +1,7 @@
 dw 0 
 
 :string_to_num
-ldai {%GOT:softstack_ptr}
+ldai {softstack_ptr}
 ldb 1
 sub {garbage_scratch}
 ldai {garbage_scratch}

@@ -6,7 +6,7 @@
 dw 0
 
 :kprint
-ldai {%GOT:softstack_ptr}
+ldai {softstack_ptr}
 ldb 1
 sub {garbage_scratch}
 ldai {garbage_scratch}
@@ -26,7 +26,7 @@ add {kprint_ptr}
 jmp {kprint_loop}
 
 :kprint_loopend
-jmp {%GOT:softstack__ret1arg}
+jmp {softstack__ret1arg}
 
 ;;;;;;;;;;;;;;;;
 :__kern_scratch

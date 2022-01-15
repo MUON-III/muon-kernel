@@ -64,10 +64,10 @@ ota {__cmd_string_pointer}
 
 ;;command comparison
 lda {__cmd_string}
-call {%GOT:softstack__push} %GOT:{softstack_fend}
+call {%GOT:softstack__push} {%GOT:softstack_fend}
 lda {__peek}
-call %GOT:{softstack__push} {%GOT:softstack_fend}
-lda {string_compare}
+call {%GOT:softstack__push} {%GOT:softstack_fend}
+lda {%GOT:string_compare}
 scall {%GOT:softstack__call}
 ldb 0x1
 CMP {garbage_scratch}
