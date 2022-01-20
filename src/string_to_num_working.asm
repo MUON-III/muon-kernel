@@ -1,17 +1,28 @@
 dw 0 
 
+:garbage_scratch
+dw 0
+
+:__string_to_num_start_pointer
+dw 0
+
+:__string_to_num_loop
+dw 0 
+
+:__string_to_num_loop_escape
+lda 0x0 
+ota {__string_to_num_loop}
+ldbi {string_to_num_output}
+jmp {softstack__ret1arg}
+
 :string_to_num
 ldai {softstack_ptr}
 ldb 1
 sub {garbage_scratch}
-ldai {garbage_scratch}
+ldaptr {garbage_scratch}
 ota {__string_to_num_start_pointer}
 
 :__string_to_num_loop_setup
-ldai {__string_to_num_loop}
-ldb 0x5
-CMP {garbage_scratch}
-brch 0b10 {__string_to_num_loop_escape}
 ldaptr {__string_to_num_start_pointer}
 ldb 0x2f
 SUB {garbage_scratch}
@@ -21,6 +32,11 @@ ADD {garbage_scratch}
 LDAPTR {garbage_scratch}
 ldbi {string_to_num_output}
 OR {string_to_num_output}
+ldai {string_to_num_output}
+ldai {__string_to_num_loop}
+ldb 0x5
+CMP {garbage_scratch}
+brch 0b10 {__string_to_num_loop_escape}
 ldai {string_to_num_output}
 SHLA {string_to_num_output}
 ldai {string_to_num_output}
@@ -62,21 +78,6 @@ dw 0xc
 dw 0xd
 dw 0xe
 dw 0xf
-
-:garbage_scratch
-dw 0
-
-:__string_to_num_start_pointer
-dw 0
-
-:__string_to_num_loop
-dw 0 
-
-:__string_to_num_loop_escape
-lda 0x0 
-ota {__string_to_num_loop}
-ldb {string_to_num_output}
-jmp {softstack__ret1arg}
 
 :string_to_num_output
 dw 0

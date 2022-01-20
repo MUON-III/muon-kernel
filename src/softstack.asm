@@ -1,3 +1,20 @@
+:softstack_fend
+dw 0
+
+:softstack_data
+dw 0
+
+:softstack_scratch0
+dw 0
+:softstack_scratch1
+dw 0
+:softstack_scratch2
+dw 0
+:softstack_scratch3
+dw 0
+
+:__ss_err_crit_code
+dw 0
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; void softstack__pop(word)   ;;
@@ -139,23 +156,7 @@ dw 0x10000
 :softstack_max
 dw 0x20000
 
-:softstack_fend
-dw 0
 
-:softstack_data
-dw 0
-
-:softstack_scratch0
-dw 0
-:softstack_scratch1
-dw 0
-:softstack_scratch2
-dw 0
-:softstack_scratch3
-dw 0
-
-:__ss_err_crit_code
-dw 0
 
 hcf
 

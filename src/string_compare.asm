@@ -8,16 +8,15 @@
 ldai {softstack_ptr}
 ldb 0x1
 sub {garbage_scratch}
-ldai {garbage_scratch}
+ldaptr {garbage_scratch}
 ota {__string_compare_primary_pointer}
 
+
 ldai {softstack_ptr}
-ldb 0x0
+ldb 0x2
 sub {garbage_scratch}
-ldai {garbage_scratch}
+ldaptr {garbage_scratch}
 ota {__string_compare_secondary_pointer}
-
-
 
 :string_compare_loop
 ldaptr {__string_compare_primary_pointer}
@@ -39,8 +38,6 @@ ADD {__string_compare_primary_pointer}
 ldai {__string_compare_secondary_pointer}
 ldb 0x1
 ADD {__string_compare_secondary_pointer}
-lda 0x33
-ota 0xf00000
 jmp {string_compare_loop}
 
 :string_compare_end_true

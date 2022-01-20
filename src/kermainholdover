@@ -1,4 +1,4 @@
-:zero_protect
+
 dw 0
 brch 0b100000 {__inthandler_handleinterrupt_kybd}
 
@@ -20,7 +20,7 @@ dw 0
 
 ;; kernel starting from zero
 :__inthandler_nointerrupt
-
+jmp {__wait_loop}
 
 :command_string_entry
 ldai 0xF00002
@@ -75,6 +75,9 @@ CMP {garbage_scratch}
 brch 0b10 {__peek_exec}
 
 
+:__wait_loop
+ie 
+jmp {__wait_loop}
 
 
 
@@ -85,23 +88,34 @@ dw 0x50
 dw 0x45
 dw 0x45
 dw 0x4b
+dw 0x00
 
 :__peek_exec
-lda 0x45
-ota 0xF00000
+ldai {__cmd_string_space_pointer}
+call {%GOT:softstack__push} {%GOT:softstack_fend}
+lda {%GOT:string_to_num}
+scall {%GOT:softstack__call}
+ota 0xf00001
+ota {garbage_scratch}
+ldaptr {garbage_scratch}
+ota 0xf00001
+call {%GOT:softstack__push} {%GOT:softstack_fend}
+lda {%GOT:itoa}
+scall {%GOT:softstack__call}
+ota {garbage_scratch}
+call {%GOT:softstack__push} {%GOT:softstack_fend}
+lda {%GOT:kprint}
+scall {%GOT:softstack__call}
 jmp {__wait_loop}
 
 
 
 
-:__wait_loop
-ie 
-jmp {__wait_loop}
 
 
 
 :__cmd_string_space_pointer_pointer
-dw 0
+dw {__cmd_string_space_pointer_pointer}
 
 :__cmd_string_space_pointer
 dw 0 

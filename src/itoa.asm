@@ -1,4 +1,22 @@
 dw 0
+:itoaval
+dw 0
+:itoaout
+dp ******
+dw 0
+:itoactr
+dw 0
+:itoaidx
+dw 0
+:itoascr1
+dw 0
+:itoascr2
+dw 0
+
+:itoalookup
+dp 0123456789abcdef
+
+
 :___itoatest
 
 elda 0xABCDEF
@@ -179,22 +197,6 @@ jmp {softstack__ret1arg}
 
 hcf
 
-:itoaval
-dw 0
-:itoaout
-dp ******
-dw 0
-:itoactr
-dw 0
-:itoaidx
-dw 0
-:itoascr1
-dw 0
-:itoascr2
-dw 0
-
-:itoalookup
-dp 0123456789abcdef
 
 
 ;;;;;;;;;;;;;;; _shr4 ;;;;;;;;;;;;;;;

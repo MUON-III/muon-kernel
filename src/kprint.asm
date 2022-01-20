@@ -9,9 +9,9 @@ dw 0
 ldai {softstack_ptr}
 ldb 1
 sub {garbage_scratch}
-ldai {garbage_scratch}
+ldaptr {garbage_scratch}
 ota {kprint_ptr}
-
+ota 0xf00001
 
 :kprint_loop
 ldaptr {kprint_ptr}
@@ -21,6 +21,7 @@ brch 2 {kprint_loopend}
 ldaptr {kprint_ptr}
 ota 0xF00000
 ldai {kprint_ptr}
+ota 0xf00001
 ldb 1
 add {kprint_ptr}
 jmp {kprint_loop}
