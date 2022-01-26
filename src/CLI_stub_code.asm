@@ -24,10 +24,10 @@ jmp {__wait_loop}
 
 :command_string_entry
 ldai 0xF00002
-ota 0xF00000
 ldb 0x0a
 CMP {garbage_scratch}
 brch 0b10 {command_interpreter}
+ota 0xF00000
 ldb 0x20
 CMP {garbage_scratch}
 brch 0b10 {__string_space_injection}
@@ -62,8 +62,6 @@ lda {__cmd_string}
 ota {__cmd_string_pointer}
 
 ;;command comparison
-lda 0x31
-ota 0xf00000
 lda {__cmd_string}
 call {%GOT:softstack__push} {%GOT:softstack_fend}
 lda {__peek}
@@ -73,6 +71,17 @@ scall {%GOT:softstack__call}
 ldb 0x1
 CMP {garbage_scratch}
 brch 0b10 {__peek_exec}
+
+
+
+:__prompt
+lda 0xa
+ota 0xf00000
+lda 0x3f
+ota 0xf00000
+lda 0x3a
+ota 0xf00000
+jmp {__wait_loop}
 
 
 :__wait_loop
@@ -91,6 +100,8 @@ dw 0x4b
 dw 0x00
 
 :__peek_exec
+lda 0xa
+ota 0xf00000
 ldai {__cmd_string_space_pointer}
 call {%GOT:softstack__push} {%GOT:softstack_fend}
 lda {%GOT:string_to_num}
@@ -106,7 +117,7 @@ ota {garbage_scratch}
 call {%GOT:softstack__push} {%GOT:softstack_fend}
 lda {%GOT:kprint}
 scall {%GOT:softstack__call}
-jmp {__wait_loop}
+jmp {__prompt}
 
 
 
