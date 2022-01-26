@@ -9,8 +9,8 @@ all:
 build:
 	mkdir -p lnk
 	mkdir -p bin
-	$(CASM) -i src/stdlib.asm -o bin/stdlib.o --gotout lnk/stdlib.got --org 0xC000 --binary
-	$(CASM) -i src/kernmain.asm -o bin/kernmain.o --gotin lnk/stdlib.got --binary
+	$(CASM) -i src/stdlib.asm -o bin/stdlib.o --gotout lnk/stdlib.got --org 0xC000 --binary --quiet
+	$(CASM) -i src/kernmain.asm -o bin/kernmain.o --gotin lnk/stdlib.got --binary --quiet
 	util/assemblerom.py bin/kernmain.o:0 bin/stdlib.o:0xC000 rom.bin
 	
 test:
