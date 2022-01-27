@@ -15,7 +15,7 @@ ota {__string_to_num_loop}
 ldbi {string_to_num_output}
 jmp {softstack__ret1arg}
 
-:string_to_num
+:%EXP:string_to_num
 ldai {softstack_ptr}
 ldb 1
 sub {garbage_scratch}

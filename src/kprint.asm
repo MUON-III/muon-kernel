@@ -5,7 +5,7 @@
 :kprint_ptr
 dw 0
 
-:kprint
+:%EXP:kprint
 ldai {softstack_ptr}
 ldb 1
 sub {garbage_scratch}

@@ -57,7 +57,7 @@ hcf
 ;;;;;;;;;;;;;;; itoa ;;;;;;;;;;;;;;;
 ;; word* itoa(word)               ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-:itoa
+:%EXP:itoa
 
 ldai {softstack_ptr}
 ldb 1

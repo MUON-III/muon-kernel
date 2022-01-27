@@ -3,7 +3,7 @@
 
 
 
-:string_compare
+:%EXP:string_compare
 
 ldai {softstack_ptr}
 ldb 0x1

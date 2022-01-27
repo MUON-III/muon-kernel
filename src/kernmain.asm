@@ -1,4 +1,5 @@
 
+:START
 dw 0
 brch 0b100000 {__inthandler_handleinterrupt_kybd}
 
@@ -15,8 +16,7 @@ jmp {__wait_loop}
 dw 0
 
 :garbage_scratch
-dw 0 
-
+dw 0
 
 ;; kernel starting from zero
 :__inthandler_nointerrupt
@@ -24,6 +24,7 @@ jmp {__wait_loop}
 
 :command_string_entry
 ldai 0xF00002
+ota 0xF00001
 ldb 0x0a
 CMP {garbage_scratch}
 brch 0b10 {command_interpreter}
@@ -63,11 +64,11 @@ ota {__cmd_string_pointer}
 
 ;;command comparison
 lda {__cmd_string}
-call {%GOT:softstack__push} {%GOT:softstack_fend}
+call {%EXT:softstack__push} {%EXT:softstack_fend}
 lda {__peek}
-call {%GOT:softstack__push} {%GOT:softstack_fend}
-lda {%GOT:string_compare}
-scall {%GOT:softstack__call}
+call {%EXT:softstack__push} {%EXT:softstack_fend}
+lda {%EXT:string_compare}
+scall {%EXT:softstack__call}
 ldb 0x1
 CMP {garbage_scratch}
 brch 0b10 {__peek_exec}
@@ -103,20 +104,20 @@ dw 0x00
 lda 0xa
 ota 0xf00000
 ldai {__cmd_string_space_pointer}
-call {%GOT:softstack__push} {%GOT:softstack_fend}
-lda {%GOT:string_to_num}
-scall {%GOT:softstack__call}
+call {%EXT:softstack__push} {%EXT:softstack_fend}
+lda {%EXT:string_to_num}
+scall {%EXT:softstack__call}
 ota 0xf00001
 ota {garbage_scratch}
 ldaptr {garbage_scratch}
 ota 0xf00001
-call {%GOT:softstack__push} {%GOT:softstack_fend}
-lda {%GOT:itoa}
-scall {%GOT:softstack__call}
+call {%EXT:softstack__push} {%EXT:softstack_fend}
+lda {%EXT:itoa}
+scall {%EXT:softstack__call}
 ota {garbage_scratch}
-call {%GOT:softstack__push} {%GOT:softstack_fend}
-lda {%GOT:kprint}
-scall {%GOT:softstack__call}
+call {%EXT:softstack__push} {%EXT:softstack_fend}
+lda {%EXT:kprint}
+scall {%EXT:softstack__call}
 jmp {__prompt}
 
 
