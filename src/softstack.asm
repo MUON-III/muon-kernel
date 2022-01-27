@@ -21,7 +21,6 @@ dw 0
 ;; A register - data to push   ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 :%EXP:softstack__push
-ijmp {softstack_fend}
 lda 1
 ota {__ss_err_crit_code}
 ldai {softstack_max}

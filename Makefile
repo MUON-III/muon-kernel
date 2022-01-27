@@ -3,7 +3,7 @@ MULINK = ./mulink
 UCODE = ./ucode.bin
 
 all:
-	#make dlcasm
+	make dlcasm
 	make build
 	make test
 
